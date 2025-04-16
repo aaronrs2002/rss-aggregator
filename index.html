@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="keywords" content="News Aggregator, RSS feed, XML feed reader, RSS reader" />
+    <meta name="description"
+        content="Free News Aggregator. Grab any public RSS feed and display it here without advertising and without your boss tracking you." />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/brands.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/solid.css" rel="stylesheet" />
+    <!-- Bootstrap CSS-->
+    <link href="https://bootswatch.com/5/spacelab/bootstrap.css" rel="stylesheet" id="themedStyle">
+
+    <link rel="stylesheet" href="https://aaronrs2002.github.io/black-jack/css/animate.min.css" />
+    <link href="https://aaronrs2002.github.io/black-jack/css/shared.css" rel="stylesheet">
+
+    <!--<link href="css/style.css" rel="stylesheet">-->
+
+    <title>RSS Feed Grabber</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJWFFXF8G0"></script>
+    <script>
+        const urlStr = window.location.href;
+        if (urlStr.indexOf("file:///Users/") !== -1 || urlStr.indexOf(":3000") !== -1 || urlStr.indexOf("exclude") !== -1) {
+            console.log("Not running GA");
+        } else {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-JJWFFXF8G0');
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-info" role="alert">
+                    <h1>News Aggregator</h1>
+                    <p>Free News Aggregator. Grab any public RSS feed and display it here without advertising and
+                        without
+                        your boss tracking
+                        you.</p>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="feedAddress" placeholder="RSS FEED ADDRESS">
+                    <button class="btn btn-success" onClick="grabData(null)">Find Feed</button>
+                </div>
+            </div>
+            <div class="col-md-12">
+
+                <input type="text" placeholder="Search title or body then hit enter" name="filter"
+                    class="form-control my-3 hide" onChange="searchBuzzWord()" />
+            </div>
+
+            <div class="col-md-12">
+
+                <ul class="list-group" id="objTarget"></ul>
+
+            </div>
+
+            <div class="col-md-12">
+                <h3>Familiar RSS Feeds</h3>
+                <div class="list-group">
+
+                    <button type="button" class="list-group-item list-group-item-action"
+                        onClick="grabData('https://www.dallasobserver.com/dallas/Rss.xml')">Dallas
+                        Observer</button>
+                    <button type="button" class="list-group-item list-group-item-action"
+                        onClick="grabData('https://www.allsides.com/rss/blog')">All Sides</button>
+                    <button type="button" class="list-group-item list-group-item-action"
+                        onClick="grabData('https://www.nasa.gov/feed/')">NASA </button>
+
+
+
+                </div>
+            </div>
+
+
+            <div class="col-md-12 py-1">
+
+                <div class="d-grid gap-2">
+                    <button class="btn btn-info" onClick="javascript:toggle('rules')" type="button"
+                        data-toggle="default">View Instructions</button>
+                    <button class="btn btn-info hide" onClick="javascript:toggle('default')" type="button"
+                        data-toggle="rules">Hide Instructions</button>
+                </div>
+
+                <div class="card hide" data-toggle="rules">
+                    <div class="card-body">
+
+
+
+
+                        <h5 class="card-title" alt="poker rules">RSS FEED:</h5>
+
+                        <p>An RSS (Really Simple Syndication) feed is a web feed format that allows users and
+                            applications to receive updates from
+                            websites in a standardized, computer-readable format. It's essentially a text file
+                            (in
+                            XML
+                            format) containing
+                            information about new content on a website, such as blog posts, articles, or
+                            podcasts.
+                            Users
+                            can subscribe to these
+                            feeds using an RSS reader, which displays the updates in a single, organized
+                            location,
+                            eliminating the need to visit
+                            each website individually to check for new content.</p>
+                        <label>Here's a more detailed breakdown:</label>
+                        <ul class="decimal">
+                            <li>Standard Format: RSS feeds are based on XML, a standard for structuring
+                                documents.
+                            </li>
+                            <li>Content Summaries: Each entry in the feed provides a summary of the new content,
+                                including its title, description, and a link to the
+                                original article.</li>
+                            <li>If the Autor wishes, they can provide the entire article. </li>
+                            <li>Ease of Use: RSS readers aggregate the content from multiple sources, making it
+                                easy
+                                to
+                                keep track of your favorite websites. This data DOES NOT brint the website
+                                adverising
+                                with it.</li>
+                            <li>Real-time Updates: When new content is published on a website, it's
+                                automatically
+                                added
+                                to the RSS feed and displayed in the RSS reader.</li>
+                            <li>Versatile Applications: RSS feeds are not limited to blogs or news websites;
+                                they
+                                can
+                                also be used for other types of content, such as podcasts,
+                                audio, and video.</li>
+                        </ul>
+
+                        <small><a href="https://support.google.com/websearch?p=ai_overviews&hl=en"
+                                target="_blank">credit:Google Gemini</a></small>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="hide alert fadeInUp" role="alert" id="globalAlert"></div>
+    <footer class="footer mt-auto py-3 animated fadeInUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="btn-group block my-2" role="group" id="gameLinks"></div>
+                </div>
+                <div class="col-md-2 my-2"> <select class="form-control" onChange="changeTheme()" id="themes"></select>
+                </div>
+                <div class="col-md-4" id="socialList">
+                </div>
+                <div class="col-md-2 my-3" id="year" data-test="test"></div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script src="https://aaronrs2002.github.io/black-jack/js/footer.js"></script>
+<script src="https://aaronrs2002.github.io/black-jack/js/cards.js"></script>
+<script src="js/functionality.js"></script>
+<!--<script src="js/navigation.js"></script>-->
+
+</html>
