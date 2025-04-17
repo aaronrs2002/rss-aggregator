@@ -108,7 +108,7 @@ function buildRSSlist() {
             trash = `<button class='btn btn-danger btn-sm' onClick='deleteItem("${rssList[i].name}")'><i class="fas fa-trash"></i></button>`;
         }
         if (name.indexOf(rssList[i].name) === -1) {
-            let concatStr = `<li class="list-group-item " >${trash} <span class='pointer' onClick="grabData('${rssList[i].address}')">${rssList[i].name.replace("https:", "").replace("www", "").replace("//", "").substring(0, 25)}...</span></li>`;
+            let concatStr = `<li class="list-group-item " >${trash} <span class='pointer' onClick="grabData('${rssList[i].address}')">${rssList[i].name.replace("https:", "").replace("www.", "").replace("//", "").substring(0, 25)}...</span></li>`;
             rssListHTML = rssListHTML + concatStr;
             names.push(rssList[i].name);
         }
