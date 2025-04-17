@@ -39,7 +39,7 @@ function grabData(whichAddress) {
             mergeList = [...mergeList, { name: address.substring(address.indexOf(".") + 1, address.lastIndexOf(".")), address }]
             localStorage.setItem("RSS_SAVED", JSON.stringify(mergeList))
         } else {
-            localStorage.setItem("RSS_SAVED", JSON.stringify([{ name: address.substring(address.indexOf("//") + 2, address.lastIndexOf(".")), address }]))
+            localStorage.setItem("RSS_SAVED", JSON.stringify([{ name: address, address }]))
         }
 
         buildRSSlist()
@@ -49,6 +49,8 @@ function grabData(whichAddress) {
         globalAlert("alert-danger", "we are going to need a web address.")
         return false;
 
+    } else {
+        document.getElementById("titleTarget").innerHTML = "Active feed: " + address;
     }
 
 
