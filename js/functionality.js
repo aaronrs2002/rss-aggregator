@@ -91,7 +91,7 @@ function grabData(whichAddress) {
 }
 
 function buildRSSlist() {
-    let rssList = [{ name: "Dallas Observer", address: "https://www.dallasobserver.com/dallas/Rss.xml" }, { name: "All Sides", address: "https://www.allsides.com/rss/blog" }, { name: "All NASA", address: "https://www.nasa.gov/feed/" }];
+    let rssList = [{ name: "aaronrs2002-blog", address: "https://aaronrstst.blogspot.com/feeds/posts/default?alt=rss" }, { name: "All Sides", address: "https://www.allsides.com/rss/blog" }, { name: "All NASA", address: "https://www.nasa.gov/feed/" }];
     let initialListlength = rssList.length;
     if (localStorage.getItem("RSS_SAVED")) {
         rssList = [...rssList, ...JSON.parse(localStorage.getItem("RSS_SAVED"))]
