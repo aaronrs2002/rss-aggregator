@@ -8,34 +8,7 @@ let obj = [];
 let search = "";
 
 
-function buildRSSlist() {
-    let rssList = [{ name: "Dallas Observer", address: "https://www.dallasobserver.com/dallas/Rss.xml" }, { name: "All Sides", address: "https://www.allsides.com/rss/blog" }, { name: "All NASA", address: "https://www.nasa.gov/feed/" }];
-    let initialListlength = rssList.length;
-    if (localStorage.getItem("RSS_SAVED")) {
-        rssList = [...rssList, ...JSON.parse(localStorage.getItem("RSS_SAVED"))]
-    }
 
-    let rssListHTML = "";
-    let names = [];
-    document.getElementById("rssListTarget").innerHTML = "";
-
-    for (let i = 0; i < rssList.length; i++) {
-
-        let trash = "";
-        if (i > initialListlength - 1) {
-            trash = `<button class='btn btn-danger' onClick='deleteItem("${rssList[i].name}")'><i class="fas fa-trash"></i></button>`;
-        }
-        if (name.indexOf(rssList[i].name) === -1) {
-            let concatStr = `<li class="list-group-item " >${trash} <span class='pointer' onClick="grabData('${rssList[i].address}')">${rssList[i].name.substring(0, 30)}</span></li>`;
-            rssListHTML = rssListHTML + concatStr;
-            names.push(rssList[i].name);
-        }
-    }
-    document.getElementById("rssListTarget").innerHTML = rssListHTML;
-
-}
-
-buildRSSlist();
 
 function grabData(whichAddress) {
     let address = whichAddress;
@@ -93,6 +66,7 @@ function grabData(whichAddress) {
 
 
                     document.getElementById("objTarget").innerHTML = objHTML;
+                    localStorage.setItem("lastRss", address);
                 }
 
 
@@ -115,6 +89,43 @@ function grabData(whichAddress) {
 
 
 }
+
+function buildRSSlist() {
+    let rssList = [{ name: "Dallas Observer", address: "https://www.dallasobserver.com/dallas/Rss.xml" }, { name: "All Sides", address: "https://www.allsides.com/rss/blog" }, { name: "All NASA", address: "https://www.nasa.gov/feed/" }];
+    let initialListlength = rssList.length;
+    if (localStorage.getItem("RSS_SAVED")) {
+        rssList = [...rssList, ...JSON.parse(localStorage.getItem("RSS_SAVED"))]
+    }
+
+    let rssListHTML = "";
+    let names = [];
+    document.getElementById("rssListTarget").innerHTML = "";
+
+    for (let i = 0; i < rssList.length; i++) {
+
+        let trash = "";
+        if (i > initialListlength - 1) {
+            trash = `<button class='btn btn-danger' onClick='deleteItem("${rssList[i].name}")'><i class="fas fa-trash"></i></button>`;
+        }
+        if (name.indexOf(rssList[i].name) === -1) {
+            let concatStr = `<li class="list-group-item " >${trash} <span class='pointer' onClick="grabData('${rssList[i].address}')">${rssList[i].name.substring(0, 30)}</span></li>`;
+            rssListHTML = rssListHTML + concatStr;
+            names.push(rssList[i].name);
+        }
+    }
+    document.getElementById("rssListTarget").innerHTML = rssListHTML;
+
+    let goHere = rssList[0].address;
+
+    if (localStorage.getItem("lastRss")) {
+        goHere = localStorage.getItem("lastRss");
+    }
+
+    grabData(goHere)
+
+}
+
+buildRSSlist();
 
 
 function searchBuzzWord() {
