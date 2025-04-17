@@ -6,20 +6,27 @@ https://web-presence-news.blogspot.com/feeds/posts/default?alt=rss
 
 let obj = [];
 let search = "";
-let rssList = [{ name: "Dallas Observer", address: "https://www.dallasobserver.com/dallas/Rss.xml" }, { name: "All Sides", address: "https://www.allsides.com/rss/blog" }, { name: "All NASA", address: "https://www.nasa.gov/feed/" }];
 
 
 function buildRSSlist() {
-
+    let rssList = [{ name: "Dallas Observer", address: "https://www.dallasobserver.com/dallas/Rss.xml" }, { name: "All Sides", address: "https://www.allsides.com/rss/blog" }, { name: "All NASA", address: "https://www.nasa.gov/feed/" }];
+    let initialListlength = rssList.length;
     if (localStorage.getItem("RSS_SAVED")) {
         rssList = [...rssList, ...JSON.parse(localStorage.getItem("RSS_SAVED"))]
     }
 
     let rssListHTML = "";
     let names = [];
+    document.getElementById("rssListTarget").innerHTML = "";
+
     for (let i = 0; i < rssList.length; i++) {
+
+        let trash = "";
+        if (i > initialListlength - 1) {
+            trash = `<button class='btn btn-danger' onClick='deleteItem("${rssList[i].name}")'><i class="fas fa-trash"></i></button>`;
+        }
         if (name.indexOf(rssList[i].name) === -1) {
-            let concatStr = `<button class="list-group-item list-group-item-action" onClick="grabData('${rssList[i].address}')">${rssList[i].name}</button>`;
+            let concatStr = `<li class="list-group-item " >${trash} <span class='pointer' onClick="grabData('${rssList[i].address}')">${rssList[i].name}</span></li>`;
             rssListHTML = rssListHTML + concatStr;
             names.push(rssList[i].name);
         }
@@ -124,5 +131,21 @@ function searchBuzzWord() {
         }
     }
 
+
+}
+
+function deleteItem(name) {
+
+    let tempData = [];
+    let startData = JSON.parse(localStorage.getItem("RSS_SAVED"));
+    for (let i = 0; i < startData.length; i++) {
+        if (name !== startData[i].name) {
+            tempData.push(startData[i])
+        }
+
+    }
+    console.log("JSON.stringify(tempData): " + JSON.stringify(tempData))
+    localStorage.setItem("RSS_SAVED", JSON.stringify(tempData));
+    buildRSSlist();
 
 }
