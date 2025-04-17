@@ -1,5 +1,5 @@
 const paths = [{
-    rssEndpoint: "https://mechanized-aesthetics.net/php-relays/social-app-rss.php?q=",
+    rssEndpoint: "https://mechanized-aesthetics.net/php-relays/public-relay.php?q=",
 }];/*test: 
 https://web-presence-news.blogspot.com/feeds/posts/default?alt=rss 
 */
