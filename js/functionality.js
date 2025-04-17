@@ -6,13 +6,43 @@ https://web-presence-news.blogspot.com/feeds/posts/default?alt=rss
 
 let obj = [];
 let search = "";
+let rssList = [{ name: "Dallas Observer", address: "https://www.dallasobserver.com/dallas/Rss.xml" }, { name: "All Sides", address: "https://www.allsides.com/rss/blog" }, { name: "All NASA", address: "https://www.nasa.gov/feed/" }];
 
 
+function buildRSSlist() {
+
+    if (localStorage.getItem("RSS_SAVED")) {
+        rssList = [...rssList, ...JSON.parse(localStorage.getItem("RSS_SAVED"))]
+    }
+
+    let rssListHTML = "";
+    let names = [];
+    for (let i = 0; i < rssList.length; i++) {
+        if (name.indexOf(rssList[i].name) === -1) {
+            let concatStr = `<button class="list-group-item list-group-item-action" onClick="grabData('${rssList[i].address}')">${rssList[i].name}</button>`;
+            rssListHTML = rssListHTML + concatStr;
+            names.push(rssList[i].name);
+        }
+    }
+    document.getElementById("rssListTarget").innerHTML = rssListHTML;
+
+}
+
+buildRSSlist();
 
 function grabData(whichAddress) {
     let address = whichAddress;
     if (whichAddress === null) {
         address = document.getElementById("feedAddress").value;
+        if (localStorage.getItem("RSS_SAVED")) {
+            let mergeList = JSON.parse(localStorage.getItem("RSS_SAVED"))
+            mergeList = [...mergeList, { name: address.substring(address.indexOf(".") + 1, address.lastIndexOf(".")), address }]
+            localStorage.setItem("RSS_SAVED", JSON.stringify(mergeList))
+        } else {
+            localStorage.setItem("RSS_SAVED", JSON.stringify([{ name: address.substring(address.indexOf("//") + 2, address.lastIndexOf(".")), address }]))
+        }
+
+        buildRSSlist()
     }
 
     if (address.indexOf("http") === -1) {
@@ -20,6 +50,8 @@ function grabData(whichAddress) {
         return false;
 
     }
+
+
 
     // setObj((obj) => []);
     obj = [];
