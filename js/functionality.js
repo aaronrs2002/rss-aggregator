@@ -62,7 +62,7 @@ function grabData(whichAddress) {
 
 
                     //  obj[i].title = obj[i].description.replaceAll("'", "&#39;").replace('"', '&#34;');
-                    objHTML = objHTML + `<li  class='list-group-item ' data-num='${i}' ><label class=' pointer'  onClick="toggle('${encodeURI(obj[i].title)}')">${obj[i].title}</label><div class='hide' data-toggle="${encodeURI(obj[i].title)}"><p>${obj[i].description}</p><small><i>${obj[i].pubDate} - <a href='${obj[i].link}' target='_blank'>Article Link</a></i></small></div></li>`
+                    objHTML = objHTML + `<li  class='list-group-item ' data-num='${i}' ><label class=' pointer'  onClick="toggle('${i}')">${obj[i].title}</label><div class='hide' data-toggle="${i}"><p>${obj[i].description}</p><small><i>${obj[i].pubDate} - <a href='${obj[i].link}' target='_blank'>Article Link</a></i></small></div></li>`
 
 
                     document.getElementById("objTarget").innerHTML = objHTML;
