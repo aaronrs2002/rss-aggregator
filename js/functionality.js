@@ -32,6 +32,7 @@ function grabData(whichAddress) {
     } else {
         document.getElementById("titleTarget").innerHTML = "Active feed: " + address;
         window.location.href = "#";
+        document.getElementById("feedAddress").value = "";
     }
 
 
