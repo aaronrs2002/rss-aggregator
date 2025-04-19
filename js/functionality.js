@@ -165,14 +165,14 @@ function deleteItem(name) {
 
 function selectArticle(num) {
 
-    [].forEach.call(document.querySelectorAll("data-article]"), function (e) {
+    [].forEach.call(document.querySelectorAll("[data-article]"), function (e) {
         e.classList.add("hide");
     });
-    [].forEach.call(document.querySelectorAll("data-descriptionarget]"), function (e) {
+    [].forEach.call(document.querySelectorAll("[data-descriptionarget]"), function (e) {
         e.innerHTML = "";
     });
 
-    [].forEach.call(document.querySelectorAll("data-descriptionarget='" + num + "']"), function (e) {
+    [].forEach.call(document.querySelectorAll("[data-descriptionarget='" + num + "']"), function (e) {
         e.innerHTML = obj[num].description;
     });
 
