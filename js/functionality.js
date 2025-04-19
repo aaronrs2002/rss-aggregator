@@ -16,7 +16,7 @@ function grabData(whichAddress) {
         address = document.getElementById("feedAddress").value;
         if (localStorage.getItem("RSS_SAVED")) {
             let mergeList = JSON.parse(localStorage.getItem("RSS_SAVED"))
-            mergeList = [...mergeList, { name: address.substring(address.indexOf(".") + 1, address.lastIndexOf(".")), address }]
+            mergeList = [...mergeList, { name: address, address }]
             localStorage.setItem("RSS_SAVED", JSON.stringify(mergeList))
         } else {
             localStorage.setItem("RSS_SAVED", JSON.stringify([{ name: address, address }]))

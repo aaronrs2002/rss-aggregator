@@ -40,9 +40,9 @@
 <body class="wLogo">
 
     <div class="container">
-        <div class="row">
+        <div class="row alert alert-info">
             <div class="col-md-12">
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-warning" role="alert">
                     <h1>News Aggregator</h1>
                     <p>Free News Aggregator. Grab any public RSS feed and display it here without advertising. Input any
                         rss feed address into the field below select "Find Feed" and your news feed will
@@ -62,14 +62,15 @@
                 <input type="text" placeholder="Search titles or descriptions" name="filter"
                     class="form-control my-3 hide" onKeyUp="searchBuzzWord()" />
             </div>
-
-            <div class="col-md-9">
+        </div>
+        <div class="row alert alert-primary">
+            <div class="col-md-8">
 
                 <ul class="list-group" id="objTarget"></ul>
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <h3>Familiar RSS Feeds</h3>
                 <ul class="list-group" id="rssListTarget">
 
@@ -85,7 +86,8 @@
 
                 </ul>
             </div>
-
+        </div>
+        <div class="row alert alert-info">
 
             <div class="col-md-12 py-1">
 
