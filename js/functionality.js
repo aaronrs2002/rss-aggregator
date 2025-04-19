@@ -63,7 +63,7 @@ function grabData(whichAddress) {
 
 
                     //  obj[i].title = obj[i].description.replaceAll("'", "&#39;").replace('"', '&#34;');
-                    objHTML = objHTML + `<li  class='list-group-item ' data-num='${i}' ><label class=' pointer'  onClick="toggle('${i}')">${obj[i].title}</label><div class='hide' data-toggle="${i}"><p>${obj[i].description}</p><small><i>${obj[i].pubDate} - <a href='${obj[i].link}' target='_blank'>Article Link</a></i></small></div></li>`
+                    objHTML = objHTML + `<li  class='list-group-item ' data-num='${i}' ><label class=' pointer'  onClick="selectArticle('${i}')">${obj[i].title}</label><div class='hide' data-article="${i}"><p data-descriptionarget='${i}'></p><small><i>${obj[i].pubDate} - <a href='${obj[i].link}' target='_blank'>Article Link</a></i></small></div></li>`
 
 
                     document.getElementById("objTarget").innerHTML = objHTML;
@@ -160,5 +160,25 @@ function deleteItem(name) {
     console.log("JSON.stringify(tempData): " + JSON.stringify(tempData))
     localStorage.setItem("RSS_SAVED", JSON.stringify(tempData));
     buildRSSlist();
+
+}
+
+function selectArticle(num) {
+
+    [].forEach.call(document.querySelectorAll("data-article]"), function (e) {
+        e.classList.add("hide");
+    });
+    [].forEach.call(document.querySelectorAll("data-descriptionarget]"), function (e) {
+        e.innerHTML = "";
+    });
+
+    [].forEach.call(document.querySelectorAll("data-descriptionarget='" + num + "']"), function (e) {
+        e.innerHTML = obj[num].description;
+    });
+
+
+    [].forEach.call(document.querySelectorAll("[data-article='" + num + "']"), function (e) {
+        e.classList.remove("hide");
+    });
 
 }
