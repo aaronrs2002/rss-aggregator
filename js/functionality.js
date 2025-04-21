@@ -95,7 +95,7 @@ function buildRSSlist() {
     let rssList = [{ name: "aaronrs2002-blog", address: "https://aaronrstst.blogspot.com/feeds/posts/default?alt=rss" },
     { name: "All Sides", address: "https://www.allsides.com/rss/blog" },
     { name: "All NASA", address: "https://www.nasa.gov/feed/" },
-    { name: "Lex Fridman", address: "https://lexfridman.com/feed/podcast/" },
+    /* { name: "Lex Fridman", address: "https://lexfridman.com/feed/podcast/" },*/
     { name: "Real Clear Politics", address: "https://www.realclearpolitics.com/index.xml" },
     { name: "Dallas Observer", address: "https://www.dallasobserver.com/dallas/Rss.xml" },
     { name: "Phoenix New Times", address: "https://www.phoenixnewtimes.com/phoenix/Rss.xml?id=ThingsToDo" },
