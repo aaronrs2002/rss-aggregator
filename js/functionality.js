@@ -92,7 +92,14 @@ function grabData(whichAddress) {
 }
 
 function buildRSSlist() {
-    let rssList = [{ name: "aaronrs2002-blog", address: "https://aaronrstst.blogspot.com/feeds/posts/default?alt=rss" }, { name: "All Sides", address: "https://www.allsides.com/rss/blog" }, { name: "All NASA", address: "https://www.nasa.gov/feed/" }];
+    let rssList = [{ name: "aaronrs2002-blog", address: "https://aaronrstst.blogspot.com/feeds/posts/default?alt=rss" },
+    { name: "All Sides", address: "https://www.allsides.com/rss/blog" },
+    { name: "All NASA", address: "https://www.nasa.gov/feed/" },
+    { name: "Lex Fridman", address: "https://lexfridman.com/feed/podcast/" },
+    { name: "Real Clear Politics", address: "https://www.realclearpolitics.com/index.xml" },
+    { name: "web-presence.biz blog", address: "https://web-presence-news.blogspot.com/feeds/posts/default?alt=rss" }
+
+    ];
     let initialListlength = rssList.length;
     if (localStorage.getItem("RSS_SAVED")) {
         rssList = [...rssList, ...JSON.parse(localStorage.getItem("RSS_SAVED"))]
