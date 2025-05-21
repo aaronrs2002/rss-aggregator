@@ -191,3 +191,5 @@ function selectArticle(num) {
     });
 
 }
+
+selectArticle(0);
