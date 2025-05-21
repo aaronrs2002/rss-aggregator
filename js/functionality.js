@@ -91,6 +91,30 @@ function grabData(whichAddress) {
 
 }
 
+
+
+function selectArticle(num) {
+
+
+    [].forEach.call(document.querySelectorAll("[data-article]"), function (e) {
+        e.classList.add("hide");
+    });
+    [].forEach.call(document.querySelectorAll("[data-descriptionarget]"), function (e) {
+        e.innerHTML = "";
+    });
+
+    [].forEach.call(document.querySelectorAll("[data-descriptionarget='" + num + "']"), function (e) {
+        e.innerHTML = obj[num].description;
+    });
+
+
+    [].forEach.call(document.querySelectorAll("[data-article='" + num + "']"), function (e) {
+        e.classList.remove("hide");
+    });
+
+}
+
+
 function buildRSSlist() {
     let rssList = [{ name: "aaronrs2002-blog", address: "https://aaronrstst.blogspot.com/feeds/posts/default?alt=rss" },
     { name: "All Sides", address: "https://www.allsides.com/rss/blog" },
@@ -132,7 +156,9 @@ function buildRSSlist() {
         goHere = localStorage.getItem("lastRss");
     }
 
-    grabData(goHere)
+    grabData(goHere);
+
+    selectArticle(0);
 
 }
 
@@ -172,31 +198,4 @@ function deleteItem(name) {
 
 }
 
-function selectArticle(num) {
-
-    console.log("num: " + num);
-
-    [].forEach.call(document.querySelectorAll("[data-article]"), function (e) {
-        e.classList.add("hide");
-    });
-    [].forEach.call(document.querySelectorAll("[data-descriptionarget]"), function (e) {
-        e.innerHTML = "";
-    });
-
-    [].forEach.call(document.querySelectorAll("[data-descriptionarget='" + num + "']"), function (e) {
-        e.innerHTML = obj[num].description;
-    });
-
-
-    [].forEach.call(document.querySelectorAll("[data-article='" + num + "']"), function (e) {
-        e.classList.remove("hide");
-    });
-
-}
-
-
-setTimeout(() => {
-
-    selectArticle(0);
-}, 2000);
 
