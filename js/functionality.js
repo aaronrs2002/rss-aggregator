@@ -174,6 +174,8 @@ function deleteItem(name) {
 
 function selectArticle(num) {
 
+    console.log("num: " + num);
+
     [].forEach.call(document.querySelectorAll("[data-article]"), function (e) {
         e.classList.add("hide");
     });
@@ -192,4 +194,9 @@ function selectArticle(num) {
 
 }
 
-selectArticle(0);
+
+setTimeout(() => {
+
+    selectArticle(0);
+}, 2000);
+
