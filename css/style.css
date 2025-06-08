@@ -4,3 +4,10 @@ img {
     height: auto !important;
     width: 100% !important;
 }
+
+[data-descriptionarget] img {
+
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+
+}
