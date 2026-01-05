@@ -93,10 +93,7 @@ function grabData(whichAddress) {
 
 function buildRSSlist() {
     let rssList = [{ name: "aaronrs2002-blog", address: "https://aaronrstst.blogspot.com/feeds/posts/default?alt=rss" },
-    { name: "All Sides", address: "https://www.allsides.com/rss/blog" },
     { name: "All NASA", address: "https://www.nasa.gov/feed/" },
-    /* { name: "Lex Fridman", address: "https://lexfridman.com/feed/podcast/" },*/
-    { name: "Real Clear Politics", address: "https://www.realclearpolitics.com/index.xml" },
     { name: "My Discussions with AI", address: "https://discussionswithai.blogspot.com/feeds/posts/default?alt=rss" },
     { name: "The Missing Details", address: "https://the-missing-details.blogspot.com/feeds/posts/default?alt=rss" },
     { name: "web-presence.biz blog", address: "https://web-presence-news.blogspot.com/feeds/posts/default?alt=rss" }
