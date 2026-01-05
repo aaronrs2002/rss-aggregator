@@ -97,8 +97,7 @@ function buildRSSlist() {
     { name: "All NASA", address: "https://www.nasa.gov/feed/" },
     /* { name: "Lex Fridman", address: "https://lexfridman.com/feed/podcast/" },*/
     { name: "Real Clear Politics", address: "https://www.realclearpolitics.com/index.xml" },
-    { name: "Dallas Observer", address: "https://www.dallasobserver.com/dallas/Rss.xml" },
-    { name: "Phoenix New Times", address: "https://www.phoenixnewtimes.com/phoenix/Rss.xml?id=ThingsToDo" },
+    { name: "My Discussions with AI", address: "https://discussionswithai.blogspot.com/feeds/posts/default?alt=rss" },
     { name: "The Missing Details", address: "https://the-missing-details.blogspot.com/feeds/posts/default?alt=rss" },
     { name: "web-presence.biz blog", address: "https://web-presence-news.blogspot.com/feeds/posts/default?alt=rss" }
 
