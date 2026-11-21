@@ -177,4 +177,6 @@ function selectArticle(num) {
     document.querySelector(`[data-article='${Number(num)}']`)?.classList.remove('hide');
 }
 
+console.log("typeof DOMPurify: " + (typeof DOMPurify));
+
 buildRSSlist();
