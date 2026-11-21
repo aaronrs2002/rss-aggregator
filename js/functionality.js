@@ -189,6 +189,12 @@ function sanitizeArticleHTML(html) {
             // Rebuild the iframe with only trusted attributes.
             const safeIframe = document.createElement("iframe");
             safeIframe.src = url.href;
+            safeIframe.style.width = "100%";
+            safeIframe.style.aspectRatio = "16 / 9";
+            safeIframe.style.height = "auto";
+            safeIframe.style.border = "0";
+            safeIframe.style.display = "block";
+            safeIframe.style.margin = "20px auto";
             safeIframe.loading = "lazy";
             safeIframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
             safeIframe.allowFullscreen = true;
