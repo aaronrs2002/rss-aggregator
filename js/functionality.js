@@ -163,6 +163,47 @@ function deleteItem(name) {
     buildRSSlist(!remaining.some(feed => feed.address === last));
 }
 
+function sanitizeArticleHTML(html) {
+    const template = document.createElement("template");
+    template.innerHTML = DOMPurify.sanitize(html, {
+        ADD_TAGS: ["iframe"],
+        ADD_ATTR: ["allow", "allowfullscreen", "loading", "referrerpolicy"]
+    });
+
+    template.content.querySelectorAll("iframe").forEach(iframe => {
+        try {
+            const url = new URL(iframe.getAttribute("src") || "");
+
+            const allowedHost = [
+                "www.youtube.com",
+                "www.youtube-nocookie.com"
+            ].includes(url.hostname);
+
+            const allowedPath = /^\/embed\/[A-Za-z0-9_-]{11}$/.test(url.pathname);
+
+            if (!allowedHost || !allowedPath || url.protocol !== "https:") {
+                iframe.remove();
+                return;
+            }
+
+            // Rebuild the iframe with only trusted attributes.
+            const safeIframe = document.createElement("iframe");
+            safeIframe.src = url.href;
+            safeIframe.loading = "lazy";
+            safeIframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+            safeIframe.allowFullscreen = true;
+            safeIframe.title = "YouTube video";
+            safeIframe.referrerPolicy = "strict-origin-when-cross-origin";
+
+            iframe.replaceWith(safeIframe);
+        } catch {
+            iframe.remove();
+        }
+    });
+
+    return template.innerHTML;
+}
+
 function selectArticle(num) {
     const article = obj[Number(num)];
     if (!article) return;
@@ -171,8 +212,11 @@ function selectArticle(num) {
     const target = document.querySelector(`[data-descriptionarget='${Number(num)}']`);
     if (target) {
         const content = String(article.description || '');
-        if (window.DOMPurify) target.innerHTML = window.DOMPurify.sanitize(content);
-        else target.textContent = content; // Never render untrusted HTML unsanitized.
+        if (window.DOMPurify) {
+            target.innerHTML = sanitizeArticleHTML(content);
+        } else {
+            target.textContent = content;
+        }
     }
     document.querySelector(`[data-article='${Number(num)}']`)?.classList.remove('hide');
 }
